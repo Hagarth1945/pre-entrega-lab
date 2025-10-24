@@ -3,8 +3,23 @@ let [, , method, resource, ...params] = process.argv;
 method = method.toUpperCase();
 resource = resource.toLowerCase();
 
+if (method === 'DELETE' && resource.startsWith("products/")) {
+    const id = parseInt(resource.split("/")[1]);
+    
+    if (isNaN(id) || id <= 0) {
+        console.log("ID inválido");
+    }
+    fetch(`https://fakestoreapi.com/products/` + id, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+        .then(data => console.log(data));
+}
+
 if (method === 'POST' && resource === 'products') {
+
     const [title, price, category] = params; 
+
     const product = {
         title, 
         price, 
