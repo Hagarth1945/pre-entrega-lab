@@ -46,9 +46,3 @@ if (method === 'GET' && resource.startsWith("products/")) {
         .then(response => response.json())
         .then(data => console.log(data));
 }
-
-if (method === 'GET' && resource === 'products') {
-    fetch('https://fakestoreapi.com/products')
-        .then(response => response.json())
-        .then(data => console.log(data));
-}
